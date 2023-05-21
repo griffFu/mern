@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-const connectionString = "mongodb+srv://isaaclele:Welcome%2310475@projectdora.ta9d2qp.mongodb.net/?retryWrites=true&w=majority"
+const connectionString = "mongodb+srv:<username>:<password>//@projectdora.ta9d2qp.mongodb.net/?retryWrites=true&w=majority"
 
 const client = new MongoClient(connectionString);
 
