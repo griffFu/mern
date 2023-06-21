@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
  
+//const{ DateTime } = require("luxon");
+//let new_format = DateTime.fromJSDate(original_format).toLocaleString(DateTime.DATE_MED)
+
 const Record = (props) => (
  <tr>
-   <td>{props.record.name}</td>
+   <td>{props.record.projectName}</td>
    <td>{props.record.position}</td>
+   <td>{Date(props.record.startTime)}</td>
+   <td>{props.record.position}</td>
+   <td>{props.record.PPR}</td>
    <td>{props.record.level}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
@@ -72,9 +78,11 @@ export default function RecordList() {
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>
-           <th>Name</th>
-           <th>Position</th>
-           <th>Level</th>
+           <th>Project Name</th>
+           <th>Location</th>
+           <th>Start Time</th>
+           <th>End Time</th>
+           <th>PPR</th>
            <th>Action</th>
          </tr>
        </thead>

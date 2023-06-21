@@ -5,6 +5,7 @@ export default function Create() {
  const [form, setForm] = useState({
    name: "",
    position: "",
+   //startTime: "",
    level: "",
  });
  const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function Create() {
      return;
    });
  
-   setForm({ name: "", position: "", level: "" });
+   setForm({ name: "", position: "", startTime: "", level: "" });
    navigate("/");
  }
  
@@ -44,64 +45,68 @@ export default function Create() {
    <div>
      <h3>Create New Record</h3>
      <form onSubmit={onSubmit}>
+
+      {/*Project Name Entry Field*/}
        <div className="form-group">
-         <label htmlFor="name">Name</label>
+         <label htmlFor="projectName">Project Name</label>
          <input
            type="text"
            className="form-control"
-           id="name"
-           value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
+           id="projectName"
+           value={form.projectName}
+           onChange={(e) => updateForm({ projectName: e.target.value })}
          />
        </div>
+
+       {/*Location Entry Field*/}
        <div className="form-group">
-         <label htmlFor="position">Position</label>
+         <label htmlFor="location">Location</label>
          <input
            type="text"
            className="form-control"
-           id="position"
+           id="location"
            value={form.position}
            onChange={(e) => updateForm({ position: e.target.value })}
          />
        </div>
+
+
+      {/*Start Time Entry Field*/}
        <div className="form-group">
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionIntern"
-             value="Intern"
-             checked={form.level === "Intern"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionJunior"
-             value="Junior"
-             checked={form.level === "Junior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-         </div>
-         <div className="form-check form-check-inline">
-           <input
-             className="form-check-input"
-             type="radio"
-             name="positionOptions"
-             id="positionSenior"
-             value="Senior"
-             checked={form.level === "Senior"}
-             onChange={(e) => updateForm({ level: e.target.value })}
-           />
-           <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-         </div>
+         <label htmlFor="startTime">Start Time</label>
+         <input
+           type="date"
+           className="form-control"
+           id="startTime"
+           value={form.startTime}
+           onChange={(e) => updateForm({ startTime: e.target.value })}
+         />
        </div>
+
+      {/*End Time Entry Field*/}
+       <div className="form-group">
+         <label htmlFor="endTime">End Time</label>
+         <input
+           type="text"
+           className="form-control"
+           id="endTime"
+           value={form.position}
+           onChange={(e) => updateForm({ position: e.target.value })}
+         />
+       </div>
+
+      {/*PPR Entry Field*/}
+       <div className="form-group">
+         <label htmlFor="PPR">PPR</label>
+         <input
+           type="text"
+           className="form-control"
+           id="PPR"
+           value={form.PPR}
+           onChange={(e) => updateForm({ PPR: e.target.value })}
+         />
+       </div>
+
        <div className="form-group">
          <input
            type="submit"
