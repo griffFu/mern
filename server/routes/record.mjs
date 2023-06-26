@@ -27,6 +27,7 @@ router.post("/", async (req, res) => {
     projectName: req.body.projectName,
     position: req.body.position,
     startTime: req.body.startTime,
+    endTime: req.body.endTime,
     PPR: req.body.PPR,
     level: req.body.level,
   };
@@ -43,6 +44,7 @@ router.patch("/:id", async (req, res) => {
       name: req.body.projectName,
       position: req.body.position,
       startTime: req.body.startTime,
+      endTime: req.body.endTime,
       PPR: req.body.PPR,
       level: req.body.level,
     }

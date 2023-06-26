@@ -6,9 +6,9 @@ export default function Edit() {
    projectName: "",
    position: "",
    startTime: "",
+   endTime: "",
    level: "",
    PPR: "",
-   records: [],
  });
  const params = useParams();
  const navigate = useNavigate();
@@ -52,6 +52,7 @@ export default function Edit() {
     projectName: form.projectName,
      position: form.position,
      startTime: form.startTime,
+     endTime: form.endTime,
      PPR: form.PPR,
      level: form.level,
    };
@@ -114,11 +115,11 @@ export default function Edit() {
        <div className="form-group">
          <label htmlFor="endTime">End Time: </label>
          <input
-           type="text"
+           type="datetime-local"
            className="form-control"
            id="endTime"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           value={form.endTime}
+           onChange={(e) => updateForm({ endTime: e.target.value })}
          />
        </div>
 

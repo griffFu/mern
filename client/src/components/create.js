@@ -36,7 +36,7 @@ export default function Create() {
      return;
    });
  
-   setForm({ name: "", position: "", startTime: "", level: "" });
+   setForm({ name: "", position: "", startTime: "", endTime: "", PPR: ""});
    navigate("/");
  }
  
@@ -75,7 +75,7 @@ export default function Create() {
        <div className="form-group">
          <label htmlFor="startTime">Start Time</label>
          <input
-           type="date"
+           type="datetime-local"
            className="form-control"
            id="startTime"
            value={form.startTime}
@@ -87,11 +87,11 @@ export default function Create() {
        <div className="form-group">
          <label htmlFor="endTime">End Time</label>
          <input
-           type="text"
+           type="datetime-local"
            className="form-control"
            id="endTime"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           value={form.endTime}
+           onChange={(e) => updateForm({ endTime: e.target.value })}
          />
        </div>
 

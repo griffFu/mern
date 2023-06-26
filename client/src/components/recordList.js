@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
- 
-//const{ DateTime } = require("luxon");
-//let new_format = DateTime.fromJSDate(original_format).toLocaleString(DateTime.DATE_MED)
+import { NavLink } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+
+const { DateTime } = require("luxon");
+const dt = DateTime;
 
 const Record = (props) => (
+  <>
  <tr>
    <td>{props.record.projectName}</td>
    <td>{props.record.position}</td>
-   <td>{Date(props.record.startTime)}</td>
-   <td>{props.record.position}</td>
+   <td>{dt.fromISO(props.record.startTime).toFormat('f')}</td>
+   <td>{dt.fromISO(props.record.endTime).toFormat('f')}</td>
    <td>{props.record.PPR}</td>
-   <td>{props.record.level}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
      <button className="btn btn-link"
@@ -23,6 +25,7 @@ const Record = (props) => (
      </button>
    </td>
  </tr>
+ </>
 );
  
 export default function RecordList() {
@@ -62,11 +65,14 @@ export default function RecordList() {
  function recordList() {
    return records.map((record) => {
      return (
+      <>
        <Record
          record={record}
          deleteRecord={() => deleteRecord(record._id)}
          key={record._id}
        />
+
+      </>
      );
    });
  }
@@ -74,7 +80,7 @@ export default function RecordList() {
  // This following section will display the table with the records of individuals.
  return (
    <div>
-     <h3>Record List</h3>
+     <h3>Project List</h3>
      <table className="table table-striped" style={{ marginTop: 20 }}>
        <thead>
          <tr>
@@ -88,6 +94,9 @@ export default function RecordList() {
        </thead>
        <tbody>{recordList()}</tbody>
      </table>
+     <NavLink className="nav-link" to="/create">
+         <p className="text-center">Create Record</p>
+       </NavLink>
    </div>
  );
 }
