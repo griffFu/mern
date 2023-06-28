@@ -7,13 +7,12 @@ export default function OutageMap() {
 
 return (
 
-    <div >
+    <div style={{height: '100%', width: '100%', overflow: 'none'}}>
     <TransformWrapper initialScale={1}>
-        <TransformComponent>
-            <img src={outageMapImg} style = {{width: "100%", height: "100%"}}/>
+        <TransformComponent wrapperStyle={{ width: "100%", maxHeight: "calc(100vh - 50px)" }} contentStyle={{ width: "100%", maxHeight: "calc(100vh - 50px)" }}>
+            <img src={outageMapImg} style = {{width: "100%", height: "auto"}}/>
         </TransformComponent>
     </TransformWrapper>
     </div>
-
 );
 } 
