@@ -1,0 +1,14 @@
+.red {
+    color: red;
+}
+
+.text-on-image {
+    position: absolute;
+    right: 50%;
+    left: 50%;
+    bottom: 15%;
+  }
+
+  .head-text {
+    position: relative;
+ }
