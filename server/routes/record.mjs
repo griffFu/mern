@@ -11,10 +11,16 @@ router.get("/", async (req, res) => {
   res.send(results).status(200);
 });
 
+// get access to unique record values
+router.get("/pprs", async (req, res) => {
+  let collection = await db.collection("records").distinct("PPR");
+  res.send(collection).status(200);
+});
+
 // This section will help you get a single record by id
 router.get("/:id", async (req, res) => {
   let collection = await db.collection("records");
-  let query = {_id: new ObjectId(req.params.id)};
+  let query = { _id: new ObjectId(req.params.id) };
   let result = await collection.findOne(query);
 
   if (!result) res.send("Not found").status(404);
@@ -22,6 +28,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // This section will help you create a new record.
+
 router.post("/", async (req, res) => {
   let newDocument = {
     projectName: req.body.projectName,
@@ -39,15 +46,15 @@ router.post("/", async (req, res) => {
 // This section will help you update a record by id.
 router.patch("/:id", async (req, res) => {
   const query = { _id: new ObjectId(req.params.id) };
-  const updates =  {
+  const updates = {
     $set: {
-      name: req.body.projectName,
+      projectName: req.body.projectName,
       position: req.body.position,
       startTime: req.body.startTime,
       endTime: req.body.endTime,
       PPR: req.body.PPR,
       level: req.body.level,
-    }
+    },
   };
 
   let collection = await db.collection("records");

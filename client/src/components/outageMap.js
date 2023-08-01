@@ -17,6 +17,8 @@ export default function OutageMap() {
   // setting options for dropdown menu
   const [selected, setSelected] = useState(null);
 
+  const [uniquePPRs, setUniquePPRS] = useState([]);
+
   // fetch the locations from the locations collection
   useEffect(() => {
     async function getLocations() {
@@ -37,6 +39,17 @@ export default function OutageMap() {
     return;
   }, [locations.length]);
 
+  /*
+  const removeDuplicates = () => {
+    
+    for (let index in records) {
+      uniquePPRs += Array.from(records[index].PPR);
+    }
+    let PPRSet = new Set(uniquePPRs);
+    console.log(PPRSet);
+  };
+*/
+
   // get access to the records
   useEffect(() => {
     async function getRecords() {
@@ -56,6 +69,26 @@ export default function OutageMap() {
 
     return;
   }, [records.length]);
+
+  // trying to implement unique values
+  useEffect(() => {
+    async function getUniquePPRs() {
+      const response = await fetch(`http://localhost:5050/record/pprs`);
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const uniquePPRs = await response.json();
+      setUniquePPRS(uniquePPRs);
+    }
+
+    getUniquePPRs();
+
+    return;
+  }, [uniquePPRs.length]);
 
   // generating the html for the locations by mapping through
   function locationList(selectedOption) {
@@ -101,6 +134,7 @@ export default function OutageMap() {
                 nested
               >
                 <div>{location.name}</div>
+                <div>{records.position}</div>
               </Popup>
             </>
           );
@@ -138,14 +172,11 @@ export default function OutageMap() {
       <Select
         isMulti
         name="colors"
-        options={records}
-        getOptionLabel={(option) => option.projectName}
-        getOptionValue={(option) => option._id}
+        options={uniquePPRs.map((t) => ({ value: t, label: t }))}
         onChange={handleChange}
         className="basic-multi-select"
         classNamePrefix="select"
       />
-
       <div className="head-text">
         <TransformWrapper initialScale={1}>
           <TransformComponent
@@ -158,6 +189,7 @@ export default function OutageMap() {
           </TransformComponent>
         </TransformWrapper>
       </div>
+      {console.log(uniquePPRs)}
     </>
   );
 }

@@ -1,13 +1,14 @@
 import { MongoClient } from "mongodb";
 
-const connectionString = "mongodb+srv://isaactest:MoLogin123@projectdora.ta9d2qp.mongodb.net/?retryWrites=true&w=majority"
+const connectionString =
+  "mongodb+srv://grifftest:LMq5Vs2VCVZhA7lZ@myatlasclusteredu.rptf62w.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(connectionString);
 
 let conn;
 try {
   conn = await client.connect();
-} catch(e) {
+} catch (e) {
   console.error(e);
 }
 
